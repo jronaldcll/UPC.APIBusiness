@@ -344,10 +344,11 @@
             </summary>
             <param name="UserRepository"></param>
         </member>
-        <member name="M:UPC.Business.API.Controllers.UserController.Get">
+        <member name="M:UPC.Business.API.Controllers.UserController.Login(DBEntity.EntityLogin)">
             <summary>
             GetListUser
             </summary>
+            <param name="login"></param>
             <returns></returns>
         </member>
         <member name="T:UPC.E31A.APIBusiness.API.Security.AccessToken">

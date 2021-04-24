@@ -18,6 +18,7 @@ namespace UPC.Business.API.Controllers
     /// </summary>
     [Produces("application/json")]
     [Route("api/User")]
+    [ApiController] //Para que lo muestre como Json
     public class UserController : Controller
     {
 
@@ -40,8 +41,24 @@ namespace UPC.Business.API.Controllers
         /// <summary>
         /// GetListUser
         /// </summary>
+        /// <param name="login"></param>
         /// <returns></returns>
         [Produces("application/json")]
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("login")]
+        public ActionResult Login(EntityLogin login)
+        {
+            var ret = _UserRepository.Login(login);
+
+            if (ret == null)
+                return StatusCode(401);
+
+            return Json(ret);
+        }
+
+
+        /*    [Produces("application/json")]
         [SwaggerOperation("GetListUser")]
         [AllowAnonymous]
         [HttpGet]
@@ -54,6 +71,6 @@ namespace UPC.Business.API.Controllers
                 return StatusCode(401);
 
             return Json(ret);
-        }
+        }*/
     }
 }
