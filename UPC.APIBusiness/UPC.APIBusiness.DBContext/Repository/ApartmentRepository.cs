@@ -10,17 +10,15 @@ namespace DBContext
 {
     public class ApartmentRepository : BaseRepository, IApartmentRepository
     {
-        //public List<EntityApartment> GetApartments()
-        public BaseResponse GetApartments()
+        public List<EntityApartment> GetApartments()
         {
-            var returnEntity = new BaseResponse;
-            var entityApartment = new List<EntityApartment>();
+            var returnEntity = new List<EntityApartment>();
             try
             {
                 using (var db = GetSqlConnection())
                 {
                     const string sql = @"usp_Listar_Departamentos";
-                    entityApartment = db.Query<EntityApartment>(sql, commandType: CommandType.StoredProcedure).ToList();
+                    returnEntity = db.Query<EntityApartment>(sql, commandType: CommandType.StoredProcedure).ToList();
                 }
             }
             catch(Exception ex)
