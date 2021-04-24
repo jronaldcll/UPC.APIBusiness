@@ -19,14 +19,15 @@ namespace DBContext
                 {
                     const string sql = @"usp_InsertarUuario";
                     var p = new DynamicParameters();
-                    p.Add(name: "@IDUSUARIO", dbType: DbType.String, direction: ParameterDirection.Output);
+                    p.Add(name: "@IDUSUARIO", dbType: DbType.Int32, direction: ParameterDirection.Output);
                     p.Add(name: "@LOGINUSUARIO", value: user.LoginUsuario, dbType: DbType.String, direction: ParameterDirection.Input);
                     p.Add(name: "@PASSWORDUSUARIO", value: user.PasswordUsuario, dbType: DbType.String, direction: ParameterDirection.Input);
-                    p.Add(name: "@IDPERFIL", value: user.IdPerfil, dbType: DbType.String, direction: ParameterDirection.Input);
+                    p.Add(name: "@IDPERFIL", value: user.IdPerfil, dbType: DbType.Int32, direction: ParameterDirection.Input);
                     p.Add(name: "@NOMBRES", value: user.Nombres, dbType: DbType.String, direction: ParameterDirection.Input);
                     p.Add(name: "@APELLIDOPATERNO", value: user.ApellidoPaterno, dbType: DbType.String, direction: ParameterDirection.Input);
                     p.Add(name: "@APELLIDOMATERNO", value: user.ApellidoMaterno, dbType: DbType.String, direction: ParameterDirection.Input);
                     p.Add(name: "@DOCUMENTOIDENTIDAD", value: user.DocumentoIdentidad, dbType: DbType.String, direction: ParameterDirection.Input);
+                    p.Add(name: "@USUARIOCREA", value: user.UsuarioCrea, dbType: DbType.Int32, direction: ParameterDirection.Input);
 
 
                     db.Query<EntityLoginResponse>(sql, param: p, commandType: CommandType.StoredProcedure).FirstOrDefault();

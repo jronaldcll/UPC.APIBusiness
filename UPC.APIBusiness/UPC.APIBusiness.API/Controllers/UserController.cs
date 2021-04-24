@@ -58,6 +58,24 @@ namespace UPC.Business.API.Controllers
         }
 
 
+        /// <summary>
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        [Produces("application/json")]
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("registeruser")]
+        public ActionResult Insert(EntityUser user)
+        {
+            var ret = _UserRepository.Insert(user);
+
+            if (ret == null)
+                return StatusCode(401);
+
+            return Json(ret);
+        }
+
         /*    [Produces("application/json")]
         [SwaggerOperation("GetListUser")]
         [AllowAnonymous]
